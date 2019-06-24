@@ -108,6 +108,7 @@ class FortranKernel(Kernel):
 
     def compile_with_gfortran(self, source_filename, binary_filename, cflags=None, ldflags=None):
         # cflags = ['-std=f2008', '-fPIC', '-shared', '-rdynamic'] + cflags
+        cflags = [] + cflags
         args = ['gfortran', source_filename] + cflags + ['-o', binary_filename] + ldflags
         self._write_to_stderr(
             "[Fortran kernel] build: %s" % (" ".join(args),) + "\n"
