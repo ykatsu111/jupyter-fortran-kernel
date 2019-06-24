@@ -14,7 +14,7 @@ Make sure you have the following requirements installed:
 Steps to install:
 
 1. `git clone https://github.com/ykatsu111/jupyter-fortran-kernel`
-2. `pip3 install --user git+https://github.com/ykatsu111/jupyter-fortran-kernel`
+2. `pip install --user git+https://github.com/ykatsu111/jupyter-fortran-kernel`
 3. `cd jupyter-fortran-kernel`
 4. `jupyter kernelspec install --user fortran_spec`
 
