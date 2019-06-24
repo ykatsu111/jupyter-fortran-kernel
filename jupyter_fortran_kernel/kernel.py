@@ -69,12 +69,12 @@ class FortranKernel(Kernel):
     implementation = 'jupyter_fortran_kernel'
     implementation_version = '0.1'
     language = 'Fortran'
-    language_version = 'F2008'
+    language_version = 'F90/95/2008'
     language_info = {'name': 'fortran',
                      'mimetype': 'text/plain',
                      'file_extension': 'f90'}
     banner = "Fortran kernel.\n" \
-             "Uses gfortran, compiles in F2008, and creates source code files and executables in temporary folder.\n"
+             "Uses gfortran and creates source code files and executables in temporary folder.\n"
 
     def __init__(self, *args, **kwargs):
         super(FortranKernel, self).__init__(*args, **kwargs)
@@ -114,7 +114,8 @@ class FortranKernel(Kernel):
         )
         return self.create_jupyter_subprocess(args)
 
-     def _filter_magics(self, code):
+    def _filter_magics(self, code):
+        import re
 
         magics = {'cflags': [],
                   'ldflags': [],

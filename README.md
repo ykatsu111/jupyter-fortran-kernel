@@ -24,3 +24,9 @@ Then, a kernel "Fortran" will be seen in your jupyter notebook or lab.
 ## Example of notebook
 
 [Example of notebook](example-notebook.ipynb "Example of notebook")
+
+
+## Uninstall
+
+1. `jupyter kernelspec uninstall fortran_spec`
+2. `pip uninstall jupyter-fortran-kernel`
