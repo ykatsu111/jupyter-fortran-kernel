@@ -3,10 +3,8 @@ from setuptools import setup
 setup(name='jupyter_fortran_kernel',
       version='0.1.0',
       description='Minimalistic Fortran kernel for Jupyter',
-      author='Peter Hill',
-      author_email='peter@fusionplasma.co.uk',
-      url='https://github.com/ZedThree/jupyter-fortran-kernel/',
-      download_url='https://github.com/ZedThree/jupyter-fortran-kernel/tarball/0.1.0',
+      author='ykatsu111',
+      url='https://github.com/ykatsu111/jupyter-fortran-kernel',
       license='MIT',
       classifiers=[
           'Development Status :: 3 - Alpha',

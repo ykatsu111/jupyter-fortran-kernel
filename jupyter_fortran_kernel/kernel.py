@@ -106,9 +106,35 @@ class FortranKernel(Kernel):
                                   lambda contents: self._write_to_stdout(contents.decode()),
                                   lambda contents: self._write_to_stderr(contents.decode()))
 
-    def compile_with_gfortran(self, source_filename, binary_filename):
-        args = ['gfortran', source_filename, '-std=f2008', '-o', binary_filename]
+    def compile_with_gfortran(self, source_filename, binary_filename, cflags=None, ldflags=None):
+        # cflags = ['-std=f2008', '-fPIC', '-shared', '-rdynamic'] + cflags
+        args = ['gfortran', source_filename] + cflags + ['-o', binary_filename] + ldflags
+        self._write_to_stderr(
+            "[Fortran kernel] build: %s" % (" ".join(args),) + "\n"
+        )
         return self.create_jupyter_subprocess(args)
+
+     def _filter_magics(self, code):
+
+        magics = {'cflags': [],
+                  'ldflags': [],
+                  'args': []}
+
+        for line in code.splitlines():
+            if line.startswith('!!%'):
+                key, value = line[3:].split(":", 2)
+                key = key.strip().lower()
+
+                if key in ['ldflags', 'cflags']:
+                    for flag in value.split():
+                        magics[key] += [flag]
+                elif key == "args":
+                    # Split arguments respecting quotes
+                    for argument in re.findall(r'(?:[^\s,"]|"(?:\\.|[^"])*")+', value):
+                        magics['args'] += [argument.strip('"')]
+
+        return magics
+
 
     def do_execute(self, code, silent, store_history=True,
                    user_expressions=None, allow_stdin=False):

@@ -1,31 +1,26 @@
 # Minimal Fortran kernel for Jupyter
 
-Shamelessly hacked together from [jupyter-c-kernel](https://github.com/brendan-rius/jupyter-c-kernel)
+This software is forked from [ZedThree/jupyter-fortran-kernel](https://github.com/ZedThree/jupyter-fortran-kernel) and only a magic command is implimented.
 
 ## Manual installation
 
- * Make sure you have the following requirements installed:
+Make sure you have the following requirements installed:
+
   * gfortran
   * jupyter
   * python 3
   * pip
 
-### Step-by-step:
- * `git clone git@github.com:ZedThree/jupyter-fortran-kernel.git`
- * `pip install -e --user jupyter-fortran-kernel`
- * `cd jupyter-fortran-kernel`
- * `jupyter-kernelspec install fortran_spec/`
- * `jupyter-notebook`. Enjoy!
+Steps to install:
+
+1. `git clone https://github.com/ykatsu111/jupyter-fortran-kernel`
+2. `pip install --user jupyter-fortran-kernel`
+3. `cd jupyter-fortran-kernel`
+4. `jupyter kernelspec install --user fortran_spec`
+
+Then, a kernel "Fortran" will be seen in your jupyter notebook or lab.
+
 
 ## Example of notebook
 
 [Example of notebook](example-notebook.ipynb "Example of notebook")
-
-## Contributing
-
-Create branches named `issue-X` where `X` is the no of the issue.
-Rebase instead of merge.
-
-## License
-
-[MIT](LICENSE.txt)
