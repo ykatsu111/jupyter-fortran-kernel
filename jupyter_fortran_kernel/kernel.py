@@ -108,7 +108,6 @@ class FortranKernel(Kernel):
 
     def compile_with_gfortran(self, source_filename, binary_filename, cflags=None, ldflags=None):
         # cflags = ['-std=f2008', '-fPIC', '-shared', '-rdynamic'] + cflags
-        cflags = [] + cflags
         args = ['gfortran', source_filename] + cflags + ['-o', binary_filename] + ldflags
         self._write_to_stderr(
             "[Fortran kernel] build: %s" % (" ".join(args),) + "\n"
@@ -140,11 +139,14 @@ class FortranKernel(Kernel):
 
     def do_execute(self, code, silent, store_history=True,
                    user_expressions=None, allow_stdin=False):
+
+        magics = self._filter_magics(code)
+
         with self.new_temp_file(suffix='.f90') as source_file:
             source_file.write(code)
             source_file.flush()
             with self.new_temp_file(suffix='.out') as binary_file:
-                p = self.compile_with_gfortran(source_file.name, binary_file.name)
+                p = self.compile_with_gfortran(source_file.name, binary_file.name, magics['cflags'], magics['ldflags'])
                 while p.poll() is None:
                     p.write_contents()
                 p.write_contents()
