@@ -24,7 +24,6 @@ Then, a kernel "Fortran" will be seen in your jupyter notebook or lab.
 ## Example of notebook
 
 * [Example of notebook (.ipynb)](example-notebook.ipynb)
-* [Example of notebook (.html)](example-notebook.html)
 
 
 ## Uninstall
